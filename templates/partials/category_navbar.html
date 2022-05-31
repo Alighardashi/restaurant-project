@@ -1,0 +1,47 @@
+{% load static %}
+<div class="collapse navbar-collapse" id="navbars-rs-food">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item active"><a class="nav-link" href="{% url 'food:home' %}">خانه</a></li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">لیست غذاها</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="{% url 'food:food-list' %}">همه</a>
+                        {% for cat in Category %}
+                            <a class="dropdown-item" href="{% url 'food:category' cat.slug %}">{{cat.title}}</a>
+                        {% endfor %}
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">سرآشپز ها</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                {% for mrchef in master %}
+                    <a class="dropdown-item" href="{% url 'food:master_food' mrchef.slug %}">{{mrchef.name}}</a>
+                {% endfor %}
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">لیست وبلاگ ها</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="{% url 'blog:blog' %}">همه </a>
+                    {% for cat in blogs_category %}
+                        <a class="dropdown-item" href="{% url 'blog:category' cat.slug %}">{{cat.title}}</a>
+                    {% endfor %}
+
+
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown-a" data-toggle="dropdown">صفحات دیگر</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown-a">
+                <a class="dropdown-item" href="{% url 'reservation:reserve' %}">رزرویشن </a>
+                <a class="dropdown-item" href="{% url 'account:login' %}">پنل مدیریت</a>
+            </div>
+        </li>
+    </ul>
+</div>
+<a class="navbar-brand" href="{% url 'food:home' %}">
+    <img src="{% static 'foods/images/logo.png' %}" alt="" />
+</a>
+
+
+

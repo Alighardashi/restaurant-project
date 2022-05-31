@@ -1,0 +1,16 @@
+{% extends 'registration/base-home.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div style="background-color: #620606;margin-top: 260px;margin-right: 190px;" class="col-sm-12 col-xl-8">
+    <div class="bg-while rounded h-100 p-4">
+        <h6 class="mb-4">حذف غذا</h6>
+            <div class="card-body">
+                <form method="POST">{% csrf_token %}
+                   <p> آیا از حذف  {{object}} از سرآشپز {{object.master_chef}}   مطمئن هستید ؟؟</p>
+                   <button type="submit" class="btn btn-outline-light m-2">حذف</button>               
+            </div>
+    </div>
+</div>
+{% endblock %}

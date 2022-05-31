@@ -1,0 +1,35 @@
+{% extends 'registration/base-home.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="col-sm-12 col-xl-12">
+    <div class="bg-while rounded h-100 p-4">
+        <h6 class="mb-4">پروفایل</h6>
+            <div class="card-body">
+                <form class="uniForm" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-6">
+                            {{form.first_name|as_crispy_field }}
+                        </div>
+                        <div class="col-4">
+                            {{form.last_name|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{form.username|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{form.email|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{form.is_staff|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-outline-success m-2">ثبت اطلاعات</button>
+                    <a href="{% url 'account:password_change' %}"><button type="button" class="btn btn-outline-warning m-2">تغیر رمز </button></a>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

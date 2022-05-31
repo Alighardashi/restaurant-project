@@ -1,0 +1,174 @@
+{% load static %}
+{% load base_tags %}
+<!DOCTYPE html>
+<html lang="en"><!-- Basic -->
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title> رستوران کسری</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="foods/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="foods/images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'foods/css/bootstrap.min.css' %}">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'foods/css/style.css' %}">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'foods/css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'foods/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'foods/css/rtl.css' %}">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<!-- Start header -->
+<header class="top-navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div style="max-width: 1410px;" class="container">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+			{% category_navbar %}
+        </div>
+    </nav>
+</header>
+<!-- End header -->
+
+
+
+
+
+{% block content %}
+
+{% endblock %}
+
+
+
+
+
+<!-- Start Contact info -->
+<div class="contact-imfo-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<i class="fa fa-volume-control-phone"></i>
+				<div class="overflow-hidden">
+					<h4>شماره تماس</h4>
+					<p class="lead">
+						 ۹۲۲۳۲۴۶۴۸۸ +۹۸
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<i class="fa fa-envelope"></i>
+				<div class="overflow-hidden">
+					<h4>ایمیل</h4>
+					<p class="lead">
+						ghardashiali0@gmail.com
+					</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<i class="fa fa-map-marker"></i>
+				<div class="overflow-hidden">
+					<h4>آدرس</h4>
+					<p class="lead">
+						تهران _ خیابان جردن _ پلاک ۹
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Contact info -->
+
+
+	<!-- Start Footer -->
+	<footer class="footer-area bg-f">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<h3>درباره ما </h3>
+					<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>ساعت کاری </h3>
+					<p><span class="text-color">شنبه الی چهارشنبه : </span>۷ صبح الی ۱۲ شب</p>
+					<p><span class="text-color">پنجشنبه : </span> ۷ صبح الی 5 غروب</p>
+					<p><span class="text-color"> جمعه : </span> تعطیل</p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>ارتباط با ما از طریق  </h3>
+					<p class="lead">۹۲۲۳۲۴۶۴۸۸ +۹۸</p>
+					<p class="lead"><a href="#"></a>تهران _ خیابان جردن _ پلاک ۹</p>
+					<p><a href="#"> ghardashiali0@gmail.com</a></p>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<h3>دنبال کردن ما</h3>
+					<div class="subscribe_form">
+						<form class="subscribe_form">
+							<input name="EMAIL" id="subs-email" class="form_input" placeholder="آدرس ایمیل" type="email">
+							<button type="submit" class="submit">دنبال کردن</button>
+							<div class="clearfix"></div>
+						</form>
+					</div>
+					<ul class="list-inline f-social">
+						<li class="list-inline-item"><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+						<li class="list-inline-item"><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<p class="company-name">تمامی حقوق محفوظ است. &copy; ۱۴۰۱ <a href="#">رستوران کسری</a> طراحی شده توسط : 
+					<a href="https://html.design/">تیم علی علیقارداشی</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</footer>
+	<!-- End Footer -->
+	
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="{% static 'foods/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'foods/js/popper.min.js' %}"></script>
+	<script src="{% static 'foods/js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+	<script src="{% static 'foods/js/jquery.superslides.min.js' %}"></script>
+	<script src="{% static 'foods/js/images-loded.min.js' %}"></script>
+	<script src="{% static 'foods/js/isotope.min.js' %}"></script>
+	<script src="{% static 'foods/js/baguetteBox.min.js' %}"></script>
+	<script src="{% static 'foods/js/form-validator.min.js' %}"></script>
+    <script src="{% static 'foods/js/contact-form-script.js' %}"></script>
+    <script src="{% static 'foods/js/custom.js' %}"></script>
+</body>
+</html>
+
+
+

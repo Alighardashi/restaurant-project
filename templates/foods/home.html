@@ -1,0 +1,127 @@
+{% extends 'foods/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Start slides -->
+<div id="slides" class="cover-slides">
+	<ul class="slides-container">
+		<li class="text-center">
+			<img src="{% static 'foods/images/360-restaurant.jpg' %}" alt="">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1 class="m-b-20"><strong> رستوران کسری</strong></h1>
+						<p class="m-b-40"> متنوع ترین غذاها در یکی از بهترین رستوران های ایران در شعبه های مختلف شهری و برون شهری  <br> 
+							کمترین تایم رو منتظر بمانید ....</p>
+						<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="{% url 'reservation:reserve' %}">رزرو میز</a></p>
+					</div>
+				</div>
+			</div>
+		</li>
+		<li class="text-center">
+			<img src="{% static 'foods/images/Napoleons_Casino_and_Restaurant_WC.jpg' %}" alt="">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1 class="m-b-20"><strong> رستوران کسری</strong></h1>
+						<p class="m-b-40"> متنوع ترین غذاها در یکی از بهترین رستوران های ایران در شعبه های مختلف شهری و برون شهری  <br> 
+							کمترین تایم رو منتظر بمانید ....</p>
+						<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="{% url 'reservation:reserve' %}">رزرو میز</a></p>
+					</div>
+				</div>
+			</div>
+		</li>
+		<li class="text-center">
+			<img src="{% static 'foods/images/Tak2-CMSTemplate_IrMZHla.jpg' %}" alt="">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1 class="m-b-20"><strong> رستوران کسری</strong></h1>
+						<p class="m-b-40"> متنوع ترین غذاها در یکی از بهترین رستوران های ایران در شعبه های مختلف شهری و برون شهری  <br> 
+						کمترین تایم رو منتظر بمانید ....</p>
+						<p><a class="btn btn-lg btn-circle btn-outline-new-white" href="{% url 'reservation:reserve' %}">رزرو میز</a></p>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+	<div class="slides-navigation">
+		<a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+		<a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+	</div>
+</div>
+<!-- End slides -->
+
+<!-- Start QT -->
+<div class="qt-box qt-background">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 ml-auto mr-auto text-left">
+				<p class="lead ">
+					" میخواهید خرج کنید بدون نگاه کردن به قیمت پس تلاش کنید بدون نگاه کردن به ساعت"
+				</p>
+				<span class="lead">مدیر رستوران : علی علیقارداشی </span>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End QT -->
+
+<!-- Start Menu -->
+<div class="menu-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="heading-title text-center">
+					<h2> منوی ویژه</h2>
+					<p>برترین غذاهای رستوران کالن</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="special-menu text-center">
+					<div class="button-group filter-button-group">
+						<button class="active" data-filter="*">همه</button>
+						<button data-filter=".breakfast">صبحانه</button>
+						<button data-filter=".lunch">ناهار</button>
+						<button data-filter=".dinner">شام</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row special-list">
+		{% for food in foods %}
+		<a href="{% url 'food:detail' food.id %}">
+			<div class="col-lg-4 col-md-6 special-grid {{food.type_food}}">
+				<div class="gallery-single fix">
+					<img style="width:439px ; height:250px ;" src="{{food.photo.url}}" class="img-fluid" alt="Image">
+					<div class="why-text">
+						<h4>نام : {{food.name}}</h4>
+						<p>توضیحات : {{food.description|truncatewords:15}}</p>
+						<h5> قیمت : {{food.price}} هزار تومن</h5>
+						{% if is_favorite %}
+							<a href="{% url 'food:favorite' food.id %}"><i class="fa fa-heart" style="color:white ; font-size:24px"></i></a>
+						{% else %}
+							<a href="{% url 'food:favorite' food.id %}"><i class="fa fa-heart-o" style="color:white ; font-size:24px"></i></a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</a>
+		{% endfor %}
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="submit-button text-center">
+			<a href="{% url 'food:food-list' %}"><button class="btn btn-common" id="submit" type="submit"> لیست غذاها</button></a>
+			<div id="msgSubmit" class="h3 text-center hidden"></div> 
+			<div class="clearfix"></div> 
+		</div>
+	</div>
+</div>
+
+<!-- End Menu -->
+
+{% endblock content %}

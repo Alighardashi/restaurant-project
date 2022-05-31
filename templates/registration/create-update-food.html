@@ -1,0 +1,46 @@
+{% extends 'registration/base-home.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<div class="col-sm-12 col-xl-12">
+    <div class="bg-while rounded h-100 p-4">
+        <h6 class="mb-4">افزودن غذا</h6>
+            <div class="card-body">
+                <form class="uniForm" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <div class="row">
+                        <div class="col-6">
+                            {{form.name|as_crispy_field }}
+                        </div>
+                        <div class="col-4">
+                            {{form.price|as_crispy_field }}
+                        </div>
+                        <div class="col-12">
+                            {{form.description|as_crispy_field }}
+                        </div>
+                        <div class="col-6">
+                            {{form.photo|as_crispy_field }}
+                        </div>
+                        <div class="col-4">
+                            {{form.category|as_crispy_field }}
+                        </div>
+                        <div class="col-12">
+                            {{form.ingredients|as_crispy_field }}
+                        </div>
+                        <div class="col-4">
+                            {{form.master_chef|as_crispy_field }}
+                        </div>
+                        <div class="col-4">
+                            {{form.created|as_crispy_field }}
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-outline-success m-2">انتشار غذا</button>
+                    {% if request.resolver_match.kwargs.pk %}
+                    <a href="{% url 'account:delete' request.resolver_match.kwargs.pk %}"><button type="button" class="btn btn-outline-primary m-2">حذف غذا</button></a>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

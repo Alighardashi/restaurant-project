@@ -1,0 +1,173 @@
+{% extends 'foods/base.html' %}
+
+{% block content %}
+
+	<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+	
+	<!-- Start blog details -->
+	<div class="blog-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>{{foods.name}}</h2>
+						<p>{{foods.ingredients}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-8 col-lg-8 col-12">
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+							<div class="side-blog-img">
+								<img style="width: 891px;height: 460px" class="img-fluid" src="{{foods.photo.url}}" alt="">							
+								<div class="date-blog-up">
+									 27 مهر
+								</div>
+							</div>
+							<div class="inner-blog-detail details-page">
+								<h3>{{foods.description|linebreaks}}</h3>
+							</div>
+
+							<div class="col-md-12">
+								<div class="submit-button text-center">
+									<a href="{% url 'reservation:reserve' %}"><button class="btn btn-common" id="submit" type="submit">رزرو کردن</button></a>
+									<div id="msgSubmit" class="h3 text-center hidden"></div> 
+									<div class="clearfix"></div> 
+								</div>
+							</div>
+							<div class="blog-comment-box">
+								<h3>نظرات</h3>
+							{% for cm in comment %}
+								<div class="comment-item">
+									<div class="comment-item-left">
+										<img src="images/avt-img.jpg" alt="">
+									</div>
+									<div class="comment-item-right">
+										<div class="pull-left">
+											<a href="#">{{cm.name}}</a>
+										</div>
+										<div class="pull-right">
+											<i class="fa fa-clock-o" aria-hidden="true"></i>زمان انتشار : <span>۱۲.۱۵ بعد از ظهر</span>
+										</div>
+										<div class="des-l">
+											<p>{{cm.message|linebreaks}}</p>
+										</div>
+										<a href="#" class="right-btn-re"><i class="fa fa-reply" aria-hidden="true"></i> پاسخ</a>
+									</div>
+								</div>
+							{% endfor %}
+							</div>
+							<div class="comment-respond-box">
+								<h3>نظر خود را بگذارید </h3>
+								<div class="comment-respond-form">
+									<form id="commentrespondform" class="comment-form-respond row" method="post">
+										{% csrf_token %}
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<div class="form-group">
+												<input id="name_com" class="form-control" name="name" placeholder="نام و نام خانوادگی" type="text">
+											</div>
+											<div class="form-group">
+												<input id="email_com" class="form-control" name="email" placeholder="ایمیل" type="email">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<div class="form-group">
+												<textarea class="form-control" name="message" id="textarea_com" placeholder="نظر" rows="2"></textarea>
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<button class="btn btn-submit">افزودن نظر</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12 blog-sidebar">
+					<div class="right-side-blog">
+						<h3>جست و جو در غذاها</h3>
+						<form method="GET" action = "{% url 'food:search' %}">
+							<div class="blog-search-form">
+								<input name="search" placeholder="" type="text">
+								<button class="search-btn" type="submit">
+									<i class="fa fa-search" aria-hidden="true"></i>
+								</button>
+							</div>
+						</form>
+						<h3>دسته بندی غذاها</h3>
+						<div class="blog-categories">
+							<ul>
+								{% for cat in category %}
+									<li><a href="{% url 'food:category' cat.slug %}"><span>{{cat.title}}</span></a></li>
+								{% endfor %}
+							</ul>
+						</div>
+						<h3>سفارش آنلاین و حضوری </h3>
+						<h4>سرآشپز : {{foods.master_chef}}</h4>
+						<div class="post-box-blog">
+							<div class="recent-post-box">
+								<div class="recent-box-blog">
+									<div class="recent-img">
+
+									</div>
+									<div class="recent-info">
+										<h4>WWW.KASRA-RESTAURANT.COM</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h3>قیمت  :  {{foods.price}}  هزار تومن  </h3>
+						<div class="blog-tag-box">
+							<ul class="list-inline tag-list">
+								<li class="list-inline-item"><a href="#">#  غذا </a></li>
+								<li class="list-inline-item"><a href="#">#  10_دقیقه</a></li>
+								<li class="list-inline-item"><a href="#">#  حاضری </a></li>
+								<li class="list-inline-item"><a href="#">#  ناهار</a></li>
+								<li class="list-inline-item"><a href="#">#  غذای_سالم</a></li>
+								<li class="list-inline-item"><a href="#">#  گوشت </a></li>
+							</ul>
+						</div>
+						<br>
+						<h3>غذاهای های اخیر </h3>
+						{% for rec in recent %}
+					<a href="{% url 'food:detail' rec.id %}">
+						<div class="post-box-blog">
+							<div class="recent-post-box">
+								<div class="recent-box-blog">
+									<div class="recent-img">
+										<img style="width:120px ; height:90px" class="img-fluid" src="{{rec.photo.url}}" alt="">
+									</div>
+									<div class="recent-info">
+										<ul>
+											<li><i class="zmdi zmdi-account"></i>  سرآشپز  : <span>{{rec.master_chef}}</span></li>
+											<li>|</li>
+											<li><i class="zmdi zmdi-time"></i>انتشار : <span>{{rec.created.time}}</span></li>
+										</ul>
+										<h4>{{rec.description|truncatewords:15}}</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+						{% endfor %}
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	<!-- End details -->
+	{% endblock %}

@@ -1,0 +1,150 @@
+{% extends 'registration/base-home.html' %}
+{% load static %}
+
+{% block content %}
+
+            <!-- Sale & Revenue Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-line fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">تعداد غذاها</p>
+                                <h6 class="mb-0">11</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">تعداد آشپز ها</p>
+                                <h6 class="mb-0">4</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-area fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">رنج قیمت ها</p>
+                                <h6 class="mb-0">از 30.000 هزار تومن</h6>
+                                <h6 class="mb-0">تا 320.000 هزار تومن</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-xl-3">
+                        <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                            <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                            <div class="ms-3">
+                                <p class="mb-2">آدرس</p>
+                                <h6 class="mb-0">تهران - خیابان جردن - پلاک9</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sale & Revenue End -->
+            <!-- Recent Sales Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">لیست غذا ها</h6>
+                        <a href="">نمایش همه</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">نام غذا</th>
+                                    <th scope="col">دسته بندی</th>
+                                    <th scope="col">سرآشپز</th>
+                                    <th scope="col">قیمت</th>
+                                    <th scope="col">عکس</th>
+                                    <th scope="col">درباره هر غذا</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for food in foods.all %}
+                                <tr>
+                                    <td>{{food.name}}</td>
+                                    <td>{{food.category}}</td>
+                                    <td>{{food.master_chef}}</td>
+                                    <td> {{food.price}} هزار تومن</td>
+                                    <td><img style="width:200px ; height:120px border-radius:5px" src="{{food.photo.url}}"></td>
+                                    <td><a target="_blank" href="{% url 'food:detail' food.id %}"><span type="button" class="btn btn-outline-warning m-2">دیدن اطلاعات بیشتر</span></a>
+                                        <a target="_blank" href="{% url 'account:update' food.pk %}"><span type="button" class="btn btn-outline-info m-2">بروزرسانی غذا</span></a>
+                                        <a target="_blank" href="{% url 'account:delete' food.pk %}"><button type="button" class="btn btn-outline-primary m-2">حذف</button></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">رزرویشن</h6>
+                        <a href="">دیدن همه</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table text-start align-middle table-bordered table-hover mb-0">
+                            <thead>
+                                <tr class="text-white">
+                                    <th scope="col">نام و نام خانوادگی</th>
+                                    <th scope="col">آدرس الکترونیکی</th>
+                                    <th scope="col">شماره همراه</th>
+                                    <th scope="col">تعداد نفرات</th>
+                                    <th scope="col">تاریخ حضور</th>
+                                    <th scope="col">ساعت حضور</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for rec in reserve %}
+                                <tr>
+                                    <td>{{rec.name}}</td>
+                                    <td>{{rec.email}}</td>
+                                    <td>{{rec.phone}}</td>
+                                    <td>{{rec.number}}</td>
+                                    <td>{{rec.date}}</td>
+                                    <td>{{rec.time}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-md-6 col-xl-12">
+                        <div class="h-100 bg-secondary rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="mb-0">نظرات کاربران</h6>
+                                <a href="">درباره غذای</a>
+                            </div>
+                            {% for mes in message %}
+                                <div class="d-flex align-items-center border-bottom py-3">
+                                    <img class="rounded-circle flex-shrink-0" src="{% static 'registration/home/img/user.jpg' %}" alt="" style="width: 40px; height: 40px;">
+                                    <div class="w-100 ms-3">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h6 class="mb-0">{{mes.email}}</h6>
+                                            <small>{{mes.food}}</small>
+                                        </div>
+                                        <span>{{mes.message|truncatewords:20}}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Widgets End -->
+
+{% endblock %}

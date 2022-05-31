@@ -1,0 +1,106 @@
+{% extends 'foods/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Start All Pages -->
+<div class="all-page-title page-breadcrumb">
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1></h1>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End All Pages -->
+
+<!-- Start blog -->
+<div class="blog-box">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="heading-title text-center">
+					<h2>دسته بندی : {{L_category.title}}</h2>
+                    {% for cat in L_category.blog.all %}
+                    ( {{cat.title}} ) , 
+                {% endfor %}
+				</div>
+			</div>
+		</div>
+			<div class="row">
+			{% for cat in L_category.blog.all %}
+				<div class="col-lg-4 col-md-6 col-12">
+					<div class="blog-box-inner" style ="width: 351px ; height: 407;">
+						<div class="blog-img-box"style=" height: 401px;">
+							<img style="height: 407;" class="img-fluid" src="{{cat.photo.url}}" alt="">
+						</div>
+						<div class="blog-detail">
+							<h4>{{cat.title}}</h4>
+							<ul>
+								<li><span>نویسنده : {{cat.author.get_full_name}}</span></li>
+								<li>|</li>
+								<li><span> انتشار : {{cat.created.time}}</span></li>
+							</ul>
+							<p>{{cat.description|truncatechars:300}}</p>
+							<p> برای اطلاعات بیشتر راجب این وبلاگ کلیک کنید  .... </p>
+							<a class="btn btn-lg btn-circle btn-outline-new-white" href="{% url 'blog:detail' cat.id %}">ادامه وبلاگ </a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+			</div>	
+			<br>
+			<br>
+			<br>
+			<br>
+	</div>
+</div>
+<!-- End blog -->
+
+
+{% comment %} pagination {% endcomment %}
+{% comment %} pagination {% endcomment %}
+{% if L_category.has_other_pages %}
+<div class="container mb-4">
+	<div class="row ">
+		<div class="col d-flex justify-content-center">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+
+				{% if L_category.has_previous %}
+
+					<li class="page-item">
+						<a class="page-link" href="?page={{L_category.previous_page_number}}" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+						<span class="sr-only">Previous</span>
+						</a>
+					</li>
+
+				{% endif %}
+
+				{% for page in L_category.paginator.page_range %}
+					{% if L_category.number == page %}
+						<li class="page-item active"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+					{% else %}
+						<li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+					{% endif %}
+				{% endfor %}
+
+				{% if L_category.has_next %}
+
+					<li class="page-item">
+						<a class="page-link" href="?page={{L_category.next_page_number}}" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+						<span class="sr-only">Next</span>
+						</a>
+					</li>
+
+				{% endif %}
+
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% endblock %}

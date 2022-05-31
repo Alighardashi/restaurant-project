@@ -1,0 +1,22 @@
+body {
+    direction: rtl;
+    text-align: right;
+}
+th {
+    text-align: right;
+}
+td {
+    text-align: right;
+  }  
+
+  img {
+    border-radius: 8px;
+  }  
+
+  .fa.fa-address-card.me-2 {
+    margin-left: 6px;
+  }  
+
+  .dropdown-menu.bg-transparent.border-0.show {
+    text-align: right;
+  }  

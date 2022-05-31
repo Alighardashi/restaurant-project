@@ -1,0 +1,143 @@
+{% extends 'foods/base.html' %}
+{% block content %}
+	<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+	
+	<!-- Start blog details -->
+	<div class="blog-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>{{article.title}}</h2>
+						<p>در این صفحه توضیحات کامل درباره  {{article.title}}   داده شده است</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-8 col-lg-8 col-12">
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+							<div class="side-blog-img">
+								<img style="width: 891px;height: 460px" class="img-fluid" src="{{article.photo.url}}" alt="">							
+								<div class="date-blog-up">
+									۱۵ شهریور
+								</div>
+							</div>
+							<div class="inner-blog-detail details-page">
+								<h3> این مقاله در دسته بندی :  {{article.category}}  قرار دارد</h3>
+								<ul>
+									<li><i class="zmdi zmdi-account"></i> نوشته شده توسط : <span>{{article.author.get_full_name}}</span></li>
+									<li>|</li>
+									<li><i class="zmdi zmdi-time"></i>زمان : <span>{{article.created.time}}</span></li>
+								</ul>
+								<p>{{article.description|linebreaks}}</p>
+							</div>
+							<div class="blog-comment-box">
+								<h3>نظرات</h3>
+								{% for cm in comment %}
+									<div class="comment-item">
+										<div class="comment-item-left">
+											<img src="images/avt-img.jpg" alt="">
+										</div>
+										<div class="comment-item-right">
+											<div class="pull-left">
+												<a href="#">{{cm.name}}</a>
+											</div>
+											<div class="pull-right">
+												<i class="fa fa-clock-o" aria-hidden="true"></i>زمان انتشار : <span>{{cm.created.time}}</span>
+											</div>
+											<div class="des-l">
+												<p>{{cm.message}}</p>
+											</div>
+											<a href="#" class="right-btn-re"><i class="fa fa-reply" aria-hidden="true"></i> پاسخ</a>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+							<div class="comment-respond-box">
+								<h3>نظر خود را بگذارید </h3>
+								<div class="comment-respond-form">
+									<form id="commentrespondform" class="comment-form-respond row" method="post">
+										{% csrf_token %}
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<div class="form-group">
+												<input id="name_com" class="form-control" name="name" placeholder="نام و نام خانوادگی" type="text">
+											</div>
+											<div class="form-group">
+												<input id="email_com" class="form-control" name="email" placeholder="ایمیل" type="email">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<div class="form-group">
+												<textarea class="form-control" , name='message' id="textarea_com" placeholder="نظر" rows="2"></textarea>
+											</div>
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<button class="btn btn-submit">افزودن نظر</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12 blog-sidebar">
+					<div class="right-side-blog">
+						<h3> جست و جو در وبلاگ ها</h3>
+						<form method="GET" action="{% url 'blog:search' %}">
+						<div class="blog-search-form">
+							<input name="search" placeholder="" type="text">
+							<button class="search-btn" type="submit">
+								<i class="fa fa-search" aria-hidden="true"></i>
+							</button>
+						</div>
+					</form>
+						<h3>دسته بندی وبلاگ ها</h3>
+						<div class="blog-categories">
+							<ul>
+								{% for cat in category %}
+									<li><a href="{% url 'blog:category' cat.slug %}"><span>{{cat.title}}</span></a></li>
+								{% endfor %}
+							</ul>
+						</div>
+						<h3>پست های اخیر </h3>
+						{% for rec in recent %}
+					<a href="{% url 'blog:detail' rec.slug %}">
+						<div class="post-box-blog">
+							<div class="recent-post-box">
+								<div class="recent-box-blog">
+									<div class="recent-img">
+										<img style="width:120px ; height:90px" class="img-fluid" src="{{rec.photo.url}}" alt="">
+									</div>
+									<div class="recent-info">
+										<ul>
+											<li><i class="zmdi zmdi-account"></i>نوشته شده توسط  : <span>{{rec.author.get_full_name}}</span></li>
+											<li>|</li>
+											<li><i class="zmdi zmdi-time"></i>انتشار : <span>{{rec.created.time}}</span></li>
+										</ul>
+										<h4>{{rec.description|truncatewords:15}}</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End details -->
+
+	
+{% endblock %}

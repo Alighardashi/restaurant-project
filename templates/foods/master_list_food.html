@@ -1,0 +1,89 @@
+{% extends 'foods/base.html' %}
+{% block content %}
+{% load static %}
+
+	<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+	
+	<!-- Start Gallery -->
+	<div class="gallery-box">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>غذاهای سرآشپز : {{food_master.name}}</h2>
+                            {% for food in food_master.food.all %}
+                                ( {{food.name}} ) , 
+                            {% endfor %}
+					</div>
+				</div>
+			</div>
+			<div class="tz-gallery">
+				<div class="row">
+					{% for food in food_master.food.all %}
+						<div class="col-sm-12 col-md-4 col-lg-4">
+							<a class="lightbox" href="{% url 'food:detail' food.id %}">
+								<img style="width:500px ; height:350px ;" class="img-fluid" src="{{food.photo.url}}" alt="Gallery Images">
+							</a>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Gallery -->
+{% comment %} pagination {% endcomment %}
+{% if food_list.has_other_pages %}
+<div class="container mb-4">
+	<div class="row ">
+		<div class="col d-flex justify-content-center">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination">
+
+				{% if food_list.has_previous %}
+
+					<li class="page-item">
+						<a class="page-link" href="?page={{food_list.previous_page_number}}" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+						<span class="sr-only">Previous</span>
+						</a>
+					</li>
+
+				{% endif %}
+
+				{% for page in food_list.paginator.page_range %}
+					{% if food_list.number == page %}
+						<li class="page-item active"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+					{% else %}
+						<li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+					{% endif %}
+				{% endfor %}
+
+				{% if food_list.has_next %}
+
+					<li class="page-item">
+						<a class="page-link" href="?page={{food_list.next_page_number}}" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+						<span class="sr-only">Next</span>
+						</a>
+					</li>
+
+				{% endif %}
+
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+{% endif %}
+	{% comment %} end-pagination {% endcomment %}
+{% endblock %}
